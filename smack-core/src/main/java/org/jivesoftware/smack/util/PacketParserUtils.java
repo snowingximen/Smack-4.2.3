@@ -226,6 +226,10 @@ public class PacketParserUtils {
         if (typeString != null) {
             message.setType(Message.Type.fromString(typeString));
         }
+        
+        //@shixin
+        message.setVersion(parser.getAttributeValue("", "version"));
+
         String language = getLanguageAttribute(parser);
 
         // determine message's default language
@@ -864,6 +868,9 @@ public class PacketParserUtils {
         // Parse the error header
         builder.setType(XMPPError.Type.fromString(parser.getAttributeValue("", "type")));
         builder.setErrorGenerator(parser.getAttributeValue("", "by"));
+        
+        //@shixin
+        builder.setCode(parser.getAttributeValue("", "code"));
 
         outerloop: while (true) {
             int eventType = parser.next();
