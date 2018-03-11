@@ -544,4 +544,34 @@
         <className>org.jivesoftware.smackx.bob.provider.BoBIQProvider</className>
     </iqProvider>
 
+
+    <iqProvider>
+        <elementName>push</elementName>
+        <namespace>fc:msg:sync</namespace>
+        <className>org.jivesoftware.smackx.snyc.provider.SyncProvider</className>
+    </iqProvider>
+    
+    <iqProvider>
+        <elementName>query</elementName>
+        <namespace>fc:msg:offline:amount</namespace>
+        <className>org.jivesoftware.smackx.snyc.provider.OfflineMsgAmountProvider</className>
+    </iqProvider>
+
+    <iqProvider>
+        <elementName>query</elementName>
+        <namespace>fc:msg:offline:page</namespace>
+        <className>org.jivesoftware.smackx.snyc.provider.OfflineMessagesProvider</className>
+    </iqProvider>    
+   
+    <iqProvider>
+        <elementName>query</elementName>
+        <namespace>fc:msg:offline:page:rev</namespace>
+        <className>org.jivesoftware.smackx.snyc.provider.RevOfflineMessagesProvider</className>
+    </iqProvider>   
+    
+    <extensionProvider>
+        <elementName>redenvelope</elementName>
+        <namespace>fc:msg:ext</namespace>
+        <className>org.jivesoftware.smackx.snyc.provider.RedEnvelopeExtProvider</className>
+    </extensionProvider>
 </smackProviders>
