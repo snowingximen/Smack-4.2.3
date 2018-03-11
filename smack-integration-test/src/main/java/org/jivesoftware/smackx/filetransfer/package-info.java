@@ -1,0 +1,1 @@
+../../../../../../../../smack-extensions/src/main/java/org/jivesoftware/smackx/filetransfer/package-info.java
