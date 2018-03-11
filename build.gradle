@@ -294,13 +294,13 @@ subprojects {
 	apply plugin: 'maven'
 	apply plugin: 'osgi'
 	apply plugin: 'signing'
-	apply plugin: 'checkstyle'
+	// apply plugin: 'checkstyle'
 	apply plugin: 'org.kordamp.gradle.clirr'
 
-	checkstyle {
-		configFile = new File(rootConfigDir, 'checkstyle.xml')
-		toolVersion = '7.7'
-	}
+	//checkstyle {
+	//	configFile = new File(rootConfigDir, '')
+	//	toolVersion = '7.7'
+	//}
 	task sourcesJar(type: Jar, dependsOn: classes) {
 		classifier = 'sources'
 		from sourceSets.main.allSource
@@ -448,9 +448,9 @@ subprojects*.jar {
 }
 
 configure(subprojects - gplLicensedProjects) {
-	checkstyle {
-		configProperties.checkstyleLicenseHeader = "header"
-	}
+	//checkstyle {
+	//	configProperties.checkstyleLicenseHeader = "header"
+	//}
 	uploadArchives {
 		repositories {
 			mavenDeployer {
@@ -469,9 +469,9 @@ configure(subprojects - gplLicensedProjects) {
 }
 
 configure(gplLicensedProjects) {
-	checkstyle {
-		configProperties.checkstyleLicenseHeader = "${project.name}-gplv3-license-header"
-	}
+	//checkstyle {
+	//	configProperties.checkstyleLicenseHeader = "${project.name}-gplv3-license-header"
+	//}
 	uploadArchives {
 	repositories {
 		mavenDeployer {
@@ -534,7 +534,10 @@ task omemoSignalIntTest {
 	dependsOn project(':smack-omemo-signal-integration-test').tasks.run
 }
 
+
 def getGitCommit() {
+    return 'non-git build'
+
 	def dotGit = new File("$projectDir/.git")
 	if (!dotGit.isDirectory()) return 'non-git build'
 
@@ -558,6 +561,7 @@ def getGitCommit() {
 	gitCommit
 }
 
+
 def getAndroidRuntimeJar() {
 	def androidHome = getAndroidHome()
 	def androidJar = new File("$androidHome/platforms/android-$smackMinAndroidSdk/android.jar")
@@ -574,7 +578,7 @@ def getAndroidJavadocOffline() {
 }
 
 def getAndroidHome() {
-	def androidHomeEnv = System.getenv("ANDROID_HOME")
+	def androidHomeEnv = "/apps/tools/android-sdk-macosx" //System.getenv("ANDROID_HOME")
 	if (androidHomeEnv == null) {
 		throw new Exception("ANDROID_HOME environment variable is not set")
 	}
