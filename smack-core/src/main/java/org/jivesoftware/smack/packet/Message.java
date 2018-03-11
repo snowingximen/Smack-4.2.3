@@ -63,6 +63,11 @@ public final class Message extends Stanza implements TypedCloneable<Message> {
 
     private Type type;
     private String thread = null;
+    
+    /**
+     * @shixin
+     */
+    private String version = null;
 
     private final Set<Subject> subjects = new HashSet<Subject>();
     private final Set<Body> bodies = new HashSet<Body>();
@@ -469,6 +474,9 @@ public final class Message extends Stanza implements TypedCloneable<Message> {
         if (type != null) {
             sb.append("type=").append(type).append(',');
         }
+        if (version != null) {
+            sb.append("version=").append(version).append(',');
+        }
         sb.append(']');
         return sb.toString();
     }
@@ -479,6 +487,7 @@ public final class Message extends Stanza implements TypedCloneable<Message> {
         buf.halfOpenElement(ELEMENT);
         addCommonAttributes(buf);
         buf.optAttribute("type", type);
+        buf.optAttribute("version", version);
         buf.rightAngleBracket();
 
         // Add the subject in the default language
@@ -533,6 +542,15 @@ public final class Message extends Stanza implements TypedCloneable<Message> {
         return new Message(this);
     }
 
+    public String getVersion() {
+        return version;
+    }
+    
+    public void setVersion(String version) {
+        this.version = version;
+    }
+    
+    
     /**
      * Represents a message subject, its language and the content of the subject.
      */
